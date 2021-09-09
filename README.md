@@ -1,0 +1,1 @@
+This is a test automation project using Selenium Java, TestNG, Maven, WebDriver Manager, and Rest Assured

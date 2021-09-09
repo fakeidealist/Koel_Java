@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Master Suite" parallel="classes" thread-count="3">
+    <listeners>
+        <listener class-name="listeners.Listeners"></listener>
+    </listeners>
+    <parameter name="url" value="https://bbb.testpro.io"/>
+    <parameter name="username" value="testerjo168@gmail.com"/>
+    <parameter name="password" value="te$t$tudent"/>
+    <parameter name="browser" value="firefox"/>
+    <test name="All tests">
+        <classes>
+            <class name="tests.LoginTests">
+                <methods>
+                    <include name="loginTest_LoginWithCorrectCredetials_mainPageOpened"/>
+                    <include name="loginTest_loginWithIncorrectCredentials_errorFrame"/>
+                </methods>
+            </class>
+            <class name="tests.LoginPageFactoryTests">
+                <methods>
+                    <include name="loginPageFactoryTest_LoginWithCorrectCredetials_mainPageOpened"/>
+                    <include name="loginPageFactoryTest_loginWithIncorrectCredentials_errorFrame"/>
+                </methods>
+            </class>
+            <class name="tests.PlaylistTests">
+                <methods>
+                    <include name="playlistTest_createPlaylist_playlistCreated"/>
+                    <include name="playlistTest_createSmartPlaylist_playlistCreate"/>
+                    <include name="playlistTest_renamePlaylist_playlistRenamed"/>
+                </methods>
+            </class>
+            <class name="tests.PlaylistPageFactoryTests">
+                <methods>
+                    <include name="playlistPageFactoryTest_createPlaylist_playlistCreated"/>
+                    <include name="playlistPageFactoryTest_renamePlaylist_playlistRenamed"/>
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+</suite>
