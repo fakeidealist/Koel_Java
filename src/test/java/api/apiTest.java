@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class TestKoel {
+public class apiTest {
     private int playlistId;
     private String playlistName;
     private String token;
