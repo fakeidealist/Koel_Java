@@ -3,6 +3,7 @@ package helpers;
 import models.Album;
 import models.Artist;
 import models.Playlist;
+import models.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -84,5 +85,33 @@ public class DbAdapter {
         }
 
         return playlist;
+    }
+    public static User getUserByEmail(String userEmail){
+        User user = null;
+        String query = "SELECT * FROM users WHERE email = " + "'" + userEmail + "'";
+        try{
+            Class.forName(JDBC_DRIVER);
+            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            //Because the ResultSet Cursor is pointing to just before the first record when the data is loaded,
+            //we need to use the next method to move to the first row.
+            resultSet.next();
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            String email = resultSet.getString("email");
+            user = new User(id, name, email);
+
+
+        } catch (SQLException | ClassNotFoundException err){}
+        finally {
+            if(connection!=null){
+                try{
+                    connection.close();
+                } catch (SQLException ignored){}
+            }
+        }
+
+        return user;
     }
 }
