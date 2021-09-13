@@ -1,14 +1,17 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProfilePage extends MainPage {
-    private ProfilePage(WebDriver driver){
+    public ProfilePage(WebDriver driver){
         super(driver);
+    }
+
+    private WebElement getAvatarIcon(){
+        By avatarIconBy = By.xpath("//*[@class='avatar']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(avatarIconBy));
+        return driver.findElement(avatarIconBy);
     }
 
     private WebElement getNameField(){
@@ -33,5 +36,13 @@ public class ProfilePage extends MainPage {
         return driver.findElement(By.xpath("//*[@class='btn-submit']"));
     }
 
+    public void renameUserName(String newName){
+        getAvatarIcon().click();
+        getNameField().sendKeys(Keys.CONTROL + "A");
+        getNameField().sendKeys(newName);
+        getSavebutton().click();
+    }
 
 }
+
+//*[contains(text(),'Profile updated.')]
