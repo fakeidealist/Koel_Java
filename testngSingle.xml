@@ -10,9 +10,9 @@
     <parameter name="browser" value="chrome"/>
     <test name="Single test">
         <classes>
-            <class name="tests.HybridApiPlusSelenium">
+            <class name="tests.ProfileTests">
                 <methods>
-                    <include name="renamePlaylist_playlistRenamed"/>
+                    <include name="profileTest_renameUser_userRenamed"/>
                 </methods>
             </class>
         </classes>
